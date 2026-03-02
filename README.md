@@ -5,7 +5,7 @@ niri support system rice moment
   <img width="777" height="230" alt="Pasted image (9)" src="https://github.com/user-attachments/assets/a9ea776a-15e9-4573-aaab-1c6e08d6fcec" />
 </details>
 
-If you want something from this, please contact via niri Discord (@semperos_) or Matrix (@semper:4d2.org)
+If you want something from this, please contact via niri Discord (`@semperos_`) or Matrix (`@semper:4d2.org`)
 
 🎨: [Vinqou](https://vinqou.carrd.co)
 
