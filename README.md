@@ -13,18 +13,20 @@ If you want something from this, please contact via niri Discord (`@semperos_`) 
 <img width="2560" height="1600" alt="Pasted image (4)" src="android/desktop.png"/>
 
 # Showcase:
-Desktop:
-<img width="2560" height="1600" alt="Pasted image (4)" src="parsi/desktop.png"/>
-Logout:
-<img width="2560" height="1600" alt="Pasted image (3)" src="parsi/logout.png"/>
-Fetch:
-<img width="2560" height="1600" alt="Pasted image (5)" src="parsi/fetch.png"/>
-Keyboard:
-<img width="2560" height="1600" alt="Pasted image (8)" src=parsi/keyboard.png/>
-
+<details>
+  <summary>Screenshots, CW: Self Harm</summary>
+  Desktop:
+  <img width="2560" height="1600" alt="Pasted image (4)" src="parsi/desktop.png"/>
+  Logout:
+  <img width="2560" height="1600" alt="Pasted image (3)" src="parsi/logout.png"/>
+  Fetch:
+  <img width="2560" height="1600" alt="Pasted image (5)" src="parsi/fetch.png"/>
+  Keyboard:
+  <img width="2560" height="1600" alt="Pasted image (8)" src=parsi/keyboard.png/>
+</details>
 
 <details>
-  <summary>Alt Screenshots</summary>
+  <summary>Alt Screenshots, CW: Blood</summary>
   Desktop:
   <img width="2560" height="1600" alt="Pasted image (2)" src="parsi/desktop alt.png"/>
   Logout:
