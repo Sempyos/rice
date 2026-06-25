@@ -10,11 +10,13 @@ If you want something from this, please contact via niri Discord (`@semperos_`) 
 🎨: [Vinqou](https://vinqou.carrd.co)
 
 # Current:
-<img width="2560" height="1600" alt="Pasted image (4)" src="images/MonoDesktop.png"/>
-<img width="2560" height="1600" alt="Pasted image (4)" src="images/MonoApps.png"/>
+<img width="2560" height="1600" alt="Pasted image (4)" src="windows/lockscreen.png"/>
+<img width="2560" height="1600" alt="Pasted image (4)" src="windows/desktop.png"/>
 <details>
   <summary>Previous</summary>
     <img width="2560" height="1600" alt="Pasted image (4)" src="android/desktop.png"/>
+    <img width="2560" height="1600" alt="Pasted image (4)" src="images/MonoDesktop.png"/>
+    <img width="2560" height="1600" alt="Pasted image (4)" src="images/MonoApps.png"/>
 </details>
 
 # Showcase:
