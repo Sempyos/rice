@@ -5,15 +5,17 @@ niri support system rice moment
   <img width="777" height="230" alt="Pasted image (9)" src="parsi/YaLTeR Blackmail.png" />
 </details>
 
-If you want something from this, please contact via niri Discord (`@semperos_`) or Matrix (`@semper:4d2.org`)
+If you want something from this, please contact via the niri Discord (`@semperos_`) or Matrix (`@semper:4d2.org`)
 
 🎨: [Vinqou](https://vinqou.carrd.co)
 
 # Current:
-<img width="2560" height="1600" alt="Pasted image (4)" src="images/MonoDesktop.png"/>
-<img width="2560" height="1600" alt="Pasted image (4)" src="images/MonoApps.png"/>
+<img width="2560" height="1600" alt="Pasted image (4)" src="windows/Desktop.png"/>
 <details>
   <summary>Previous</summary>
+    <img width="2560" height="1600" alt="Pasted image (4)" src="images/MonoDesktop.png"/>
+    <img width="2560" height="1600" alt="Pasted image (4)" src="images/MonoApps.png"/>
+    <hr>
     <img width="2560" height="1600" alt="Pasted image (4)" src="android/desktop.png"/>
 </details>
 
