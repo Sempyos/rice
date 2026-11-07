@@ -1,0 +1,153 @@
+
+
+* {
+  all: unset;
+  font-family: Roboto;
+  
+}
+
+/*Colours*/
+$fg: #dfb7ff;
+$on-fg: #6b00b0;
+
+$bg: #17111b;
+$bg-trough: #1f1923;
+
+
+$tertiary: #eeb5e0;
+$on-tertiary: #63385b;
+
+$error: #ffb4ab;
+$on-error: #690005;
+
+/*Rounding*/
+$rounding: 16px;
+
+/* .test { */
+  /* min-width: 2560px; */
+  /* min-height: 1600px; */
+  /* background: rgba(0,0,0, 0.2) */
+/* } */
+
+.logoutBackground {
+  background: $bg;
+  border-radius: 144px;
+}
+.btn2 {
+  transition: background-color 150ms ease;
+
+  &:hover {
+    background-color: #000;
+  }
+
+  &:hover .btn {
+    transform: scale(1.2);
+  }
+}
+
+
+.btn2 {
+  background: #ff7aac;
+  border-radius: 100%;
+  margin: 32px;
+  padding: 32px;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn {
+  transition: transform 0.3s ease;
+}
+
+.bbox {
+  background: rgba(23, 17, 27, 1.0);
+  border-radius: 200px;
+}
+
+.timeDateLabelTop {
+  font-size: 24px;
+  margin-bottom: -1px;
+  font-feature-settings: "tnum";
+  color: $fg;
+  background-color: $bg-trough;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-radius: 64px 64px 0px 0px;
+}
+
+.timeDateLabelBottom {
+  font-size: 24px;
+  font-feature-settings: "tnum";
+  color: $fg;
+  background-color: $bg-trough;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-bottom: 12px;
+  border-radius: 0px 0px 64px 64px;
+}
+
+.b {
+   color: $fg;
+  background-color: $bg-trough; 
+  margin-top: 16px;
+  margin-bottom: 16px;
+  border-radius: 64px;
+  min-width: 48px;
+  min-height: 48px;
+}
+
+/*Dynamic Battery Progress Bar Colours*/
+progressbar {
+  &.normalBattery progress {
+    background-color: $fg;
+  }
+  
+  &.mediumBattery progress {
+    background-color: $tertiary;
+  }
+
+  &.lowBattery progress {
+    background-color: $error;
+  }
+}
+
+/*Progress Bar*/
+progressbar trough {
+  border-radius: 50px;
+  background-color: $bg-trough;
+  min-width: 48px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+progressbar trough progress {
+  border-radius: 50px;
+  min-width: 48px;
+  min-height: 48px;
+  background-repeat: no-repeat;
+  background-position: center 4px;
+}
+
+/*Scale*/
+scale trough {
+  border-radius: 50px;
+  background-color: $bg-trough;
+  min-width: 48px;
+  margin-bottom: 16px;
+}
+
+
+scale trough highlight {
+  border-radius: 50px;
+  background-color: $fg;
+  min-width: 48px;
+  min-height: 48px;
+  /* background-image: url("/home/semper/.config/eww/icons/coloured/brightness.svg"); */
+  background-repeat: no-repeat;
+	background-image: -gtk-icontheme("keyboard_brightness-symbolic");
+  color: #1D1109;
+background-position: center 8px;
+background-size: 32px auto;
+
+}

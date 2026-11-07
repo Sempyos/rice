@@ -1,0 +1,3 @@
+[plugins."Ewwii-sh/yucky-ewwii"]
+ref = "0.9.0"
+prebuilt = true

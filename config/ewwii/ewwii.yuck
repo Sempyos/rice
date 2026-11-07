@@ -1,0 +1,105 @@
+(defvar on_surface "#e7e0ef")
+(defvar primary "#cfbcff")
+
+(defwidget logout []
+  (box :space-evenly false :orientation "h" :class "logoutBox" :hexpand true
+    (eventbox :onclick "systemctl sleep" :hexpand true :class "logoutEventBox"
+      (image :class "logoutImage" :path "/home/semper/Downloads/pause_circle.svg" :content-fit "scaledown" :can-shrink true :image-width 128 :image-height 128 :fill-svg on_surface))
+    (eventbox :onclick "systemctl hibernate" :hexpand true :class "logoutEventBox"
+      (image :class "logoutImage" :path "/home/semper/Downloads/bedtime.svg" :content-fit "scaledown" :can-shrink true :image-width 128 :image-height 128 :fill-svg on_surface))
+    (eventbox :onclick "systemctl poweroff" :hexpand true :class "logoutEventBox"
+      (image :class "logoutImage" :path "/home/semper/Downloads/power_settings_new.svg" :content-fit "scaledown" :can-shrink true :image-width 128 :image-height 128 :fill-svg on_surface))
+    (eventbox :onclick "systemctl reboot" :hexpand true :class "logoutEventBox"
+      (image :class "logoutImage" :path "/home/semper/Downloads/restart_alt.svg" :content-fit "scaledown" :can-shrink true :image-width 128 :image-height 128 :fill-svg on_surface))
+))
+
+(defwindow logout
+  :monitor 0
+  :geometry (geometry :width "100%" :height "100%" :anchor "center")
+  (logout))
+
+; #### Bar ####
+
+(defpoll time :interval "40s" :initial "00:00" "date +%-H:%M")
+(defpoll rssi :interval "5s" :initial "00:00" "/home/semper/.config/ewwii/rssi.fish")
+(defpoll date :interval "40s" :initial "00/00" "date +%m/%d")
+(defpoll battery :interval "1m" :initial "0" "cat /sys/class/power_supply/BAT*/capacity")
+(defpoll volume :interval "1s" :initial "0" "/home/semper/.config/ewwii/volume.fish")
+(defvar dt 0)
+(defvar music false)
+(defvar pillStack 0)
+(defvar show false)
+(defvar app 0)
+(defvar summary 0)
+(defvar body 0)
+
+
+(defwidget pill []
+  (stack :selected pillStack :transition "crossfade"
+    (box :class "pillBox" :space-evenly false :orientation "h"
+      (eventbox :onhover "ewwii update dt=1" :onhoverlost "ewwii update dt=0"
+        (label :class "time" :halign "end" :text {dt == 0 ? "${time}" : "${date}"}))
+      (progress :value 35 :orientation "h" :class "batteryBar" :hexpand true :flipped true)
+      (revealer :reveal music :transition "slideleft"
+        (eventbox :onclick "notify-send shit fuck"
+          (image :class "musicImage" :path "/home/semper/Downloads/music_note.svg" :content-fit "scaledown" :can-shrink true :image-width 32 :image-height 32 :fill-svg on_surface))))
+    (box :class "pillBox" :orientation "h" :space-evenly false
+    (image :class "mediaButton" :hexpand true :halign "start" :path "/home/semper/Downloads/skip_previous.svg" :content-fit "scaledown" :can-shrink true :image-width 32 :image-height 32 :fill-svg primary)
+    (image :class "mediaButton" :hexpand false :halign "center" :path "/home/semper/Downloads/arrow_back_2.svg" :content-fit "scaledown" :can-shrink true :image-width 32 :image-height 32 :fill-svg primary)
+    (image :class "mediaButton" :hexpand false :halign "center" :path "/home/semper/Downloads/play_arrow.svg" :content-fit "scaledown" :can-shrink true :image-width 32 :image-height 32 :fill-svg primary)
+    (image :class "mediaButton" :hexpand true :halign "end" :path "/home/semper/Downloads/skip_next.svg" :content-fit "scaledown" :can-shrink true :image-width 32 :image-height 32 :fill-svg primary)
+    ))
+)
+
+(defwindow pill
+  :monitor 0
+  :geometry (geometry :x 16 :y 16 :width "8%" :height "32px" :anchor "top right")
+(pill))
+
+; #### Desktop Shit ####
+
+(defwindow us
+  :monitor 0
+  :stacking bottom
+  :geometry ( geometry :x 16 :y 16 :anchor "bottom right")
+(label :class "fuck" :text "UnsignedWaiver"))
+
+(defwindow ud
+  :monitor 0
+  :stacking bottom
+  :geometry ( geometry :x 16 :y 16 :anchor "top right")
+(box :orientation "v" :space-evenly false
+(label :class "fuck" :text time :halign "end")
+(label :class "fuck" :text date :halign "end")))
+
+(defwindow ua
+  :monitor 0
+  :stacking bottom
+   :geometry ( geometry :x 16 :anchor "center right")
+(progress :value battery :orientation "v" :class "bb" :flipped true))
+
+
+(defwidget app []
+(box :space-evenly false :orientation "v" :style "margin-top: 16px; margin-right: 16px; margin-left: 16px"
+(overlay :vexpand true
+(box :space-evenly false :vexpand false :orientation "v" :valign "start"
+(label :class "timeee" :text time :style "background: #15121C; border-radius: 999px; padding-left: 8px; padding-right: 8px")
+(overlay :class "overr" :style "background: #15121C; border-radius: 969px; padding: 8px"
+(circular-progress :width 96 :height 96 :value {min (70, (battery / 1.42) + 3.8)} :start-at 40 :thickness 8 :rounded-fg true :fg-color primary :bg-color "#ffffff00")
+(image :path rssi :content-fit "scaledown" :can-shrink true :fill-svg primary :image-width 48 :image-height 48)
+(circular-progress :value {volume / 5} :clockwise false :start-at 35 :thickness 8 :rounded-fg true :fg-color primary :bg-color "#ffffff00")))
+(box :space-evenly false :vexpand true :orientation "v" :valign "center"
+(revealer :reveal show :transition "crossfade"
+(box :space-evenly false :orientation "v"
+(label :text app)
+(label :text summary)
+(label :text body)))))))
+
+
+(defwindow app
+  :monitor 0
+  :passinput true
+  :exclusive true
+  :geometry (geometry :anchor "center right" :height "100%")
+(app))
+

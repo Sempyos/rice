@@ -1,0 +1,80 @@
+[config.wallpaper]
+command = "swaybg -m fill -i '{{image}}' & disown"
+set = true
+pre_hook = "niri msg action do-screen-transition -d 1 && kill $(pgrep -o swaybg)"
+
+[templates.fuzzel]
+input_path = './templates/fuzzel.ini'
+output_path = '/home/semper/.config/fuzzel/fuzzel.ini'
+
+[templates.yazi]
+input_path = './templates/theme.toml'
+output_path = '/home/semper/.config/yazi/theme.toml'
+
+[templates.niri]
+input_path = './templates/config.kdl'
+output_path = '/home/semper/.config/niri/config.kdl'
+
+[templates.foot]
+input_path = './templates/foot.ini'
+output_path = '/home/semper/.config/foot/foot.ini'
+
+[templates.fnott]
+input_path = './templates/fnott.ini'
+output_path = '/home/semper/.config/fnott/fnott.ini'
+post_hook = "fnottctl quit && fnott & disown"
+
+[templates.fts]
+input_path = './templates/footscript'
+output_path = '/home/semper/.local/bin/fts'
+post_hook = "magick '{{image}}' -blur 0x6 /tmp/blur"
+
+[templates.ewwScss]
+input_path = "./templates/eww.scss"
+output_path = "/home/semper/.config/eww/eww.scss"
+
+[templates.ewwYuck]
+input_path = "./templates/colours.yuck"
+output_path = "/home/semper/.config/eww/colours.yuck"
+
+[templates.ewwFishBattery]
+input_path = "./templates/battery.fish"
+output_path = "/home/semper/.config/eww/scripts/battery.fish"
+
+[templates.gtk3]
+input_path = "./templates/gtk.css"
+output_path = "/home/semper/.config/gtk-3.0/gtk.css"
+
+[templates.gtk4]
+input_path = "./templates/gtk.css"
+output_path = "/home/semper/.config/gtk-4.0/gtk.css"
+
+[templates.colour]
+input_path = "./templates/colour.fish"
+output_path = "/home/semper/.config/eww/scripts/colour.fish"
+post_hook = "/home/semper/.config/eww/scripts/colour.fish"
+
+[templates.sysboard]
+input_path = "./templates/style.css"
+output_path = "/home/semper/.config/sys64/board/style.css"
+
+[templates.fishleft]
+input_path = "./templates/fish_prompt.fish"
+output_path = "/home/semper/.config/fish/functions/fish_prompt.fish"
+
+[templates.fishright]
+input_path = "./templates/fish_right_prompt.fish"
+output_path = "/home/semper/.config/fish/functions/fish_right_prompt.fish"
+
+[templates.discord]
+input_path = "./templates/discord.css"
+output_path = "/home/semper/.config/Equicord/settings/quickCss.css"
+
+[templates.ewwiiScss]
+input_path = "./templates/ewwii.scss"
+output_path = "/home/semper/.config/ewwii/ewwii.scss"
+
+[templates.ewwiiYuck]
+input_path = "./templates/ewwii.yuck"
+output_path = "/home/semper/.config/ewwii/ewwii.yuck"
+post_hook = "ewwii reload"

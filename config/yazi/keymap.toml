@@ -1,0 +1,46 @@
+# Bookmark.
+# Open the Shell.
+[[mgr.prepend_keymap]]
+on   = "!"
+run  = 'shell "$SHELL" --block'
+desc = "Open shell here"
+
+
+
+# Quick close menus plugin.
+[[input.prepend_keymap]]
+on   = "<Esc>"
+run  = "close"
+desc = "Cancel input"
+
+
+
+# Mount Manager.
+[[mgr.prepend_keymap]]
+on  = "M"
+run = "plugin mount"
+
+
+
+# keymap.toml
+[[mgr.prepend_keymap]]
+on = [ "<A-a>" ]
+run = "plugin file-actions -- --around "
+desc= "Perform actions on selected files"
+
+
+
+[[mgr.prepend_keymap]]
+on = [ "<A-a>" ]
+run = "plugin file-actions -- --around "
+desc= "Perform actions on selected files"
+
+[[mgr.prepend_keymap]]
+on = [ "<A-e>", "m" ]
+run = 'shell -- matugen --type scheme-vibrant image "$@"'
+desc = "Matugen"
+
+[[mgr.prepend_keymap]]
+on = [ "<A-e>", "c" ]
+run = "shell -- ffmpeg -i %h -c:v libsvtav1 -preset 6 -crf 34 \"$(echo %h | awk -F '.' '{print $1}').webm\""
+desc = "ffmpeg"

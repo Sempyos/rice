@@ -1,0 +1,80 @@
+* {
+  all: unset;
+  font-size: 20px;
+  font-family: "Roboto";
+    font-feature-settings: "tnum";
+}
+
+.batteryBar {
+  min-height: 2px;
+  min-width: 128px;
+  border-radius: 192px;
+  background: #2B1C1B;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-right: 4px;
+
+  trough {
+    /* margin-right: 5px; */
+    /* margin-left: 5px; */
+    min-height: 32px;
+    /* margin-top: 6px; */
+    border-radius: 192px;
+    background: #2B1C1B;
+    progress {
+      background: #FFB3B2;
+      min-height: 32px;
+      border-radius: 192px;
+    }
+  }
+}
+
+
+.statusChip {
+  border-radius: 32px;
+  background: #1E1010;
+}
+
+.mbox {
+  background: url("file:///home/semper/cherynxblur.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 32px;
+}
+
+.niriChip {
+  border-radius: 96px;
+  background: #1E100D;
+  box-shadow: 0px 0px 24px #180B08;
+  margin: 32px;
+}
+
+text {
+  color: #DCC1BB;
+  font-family: "Cherry Bomb";
+  font-size: 36px;
+}
+
+.niri {
+  padding: 24px;
+}
+
+.mic {
+  padding: 32px;
+}
+
+placeholder {
+  color: #DCC1BB;
+  font-family: "Cherry Bomb";
+  font-size: 36px;
+  /* transform: translateY(1.5px); */
+}
+
+label {
+margin: 8px;
+margin-left: 16px;
+margin-right: 16px;
+color: #F8DCDB;
+transform: translateY(1.5px);
+}

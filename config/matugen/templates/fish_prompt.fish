@@ -1,0 +1,15 @@
+function fish_prompt --description 'Write out the prompt'
+
+    set surface_container_highest '{{colors.surface_container_highest.default.hex}}'
+    set surface_container_high '{{colors.surface_container_high.default.hex}}'
+    set on_surface '{{colors.on_surface.default.hex}}'
+    set error '{{colors.error.default.hex}}'
+    set secondary '{{colors.secondary.default.hex}}'
+
+    if test (echo $status) -ne 0 && test (echo $status) -ne 1
+        set color $fish_color_error
+    else
+        set color $fish_color_command
+    end
+    echo -n -s (set_color $surface_container_highest)(set_color -b $surface_container_highest)(set_color $secondary) (hostnamectl hostname)(set_color $surface_container_highest)(set_color -b $surface_container_high)(set_color $surface_container_high)" "(set_color -b $surface_container_high)(set_color $on_surface)(date +%R)" "(set_color $surface_container_highest)(set_color -b $surface_container_highest)(set_color $secondary) (prompt_pwd)(set_color -b normal)(set_color $surface_container_highest)(set_color normal)" "
+end

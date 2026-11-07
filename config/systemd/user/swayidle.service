@@ -1,0 +1,11 @@
+[Unit]
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/swayidle -w timeout 300 'peanutbutter -3 -f "Google Sans Flex" -p -L 15' timeout 600 'systemctl hibernate'
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

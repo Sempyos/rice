@@ -1,0 +1,190 @@
+import "std::command" as cmd;
+
+let stk = "0";
+
+enter([
+
+  poll("battery", #{
+      // It is recommended to have initial property passed.
+      // If not provided, it will default to no value which may cause problems when used.
+      // You can pass something like "" if you want no initial value.
+      initial: "/home/semper/fnottlogo.png",
+      interval: "1s",
+      cmd: "/home/semper/.config/ewwii/battery.fish", // command to execute
+  }),
+
+
+  poll("stats", #{
+      // It is recommended to have initial property passed.
+      // If not provided, it will default to no value which may cause problems when used.
+      // You can pass something like "" if you want no initial value.
+      initial: "0",
+      interval: "1s",
+      cmd: "/home/semper/.config/ewwii/stats.fish", // command to execute
+  }),
+ 
+// Add all defwindow inside enter. Enter is the root of the config.
+defwindow(
+"example",
+#{
+monitor: 0,
+stacking: "fg",
+geometry: #{
+x: "16px",
+y: "0px",
+width: "80px",
+height: "40%",
+anchor: "center right",
+},
+},
+greeter(0, battery)
+),
+defwindow(
+"darken",
+#{
+monitor: 0,
+stacking: "fg",
+geometry: #{
+x: "0px",
+y: "0px",
+width: "0px",
+height: "0px",
+anchor: "center",
+},
+},
+eventbox (#{ class: "test"}, [ box(#{}, []) ])
+),
+defwindow(
+"logout",
+#{
+monitor: 0,
+stacking: "fg",
+geometry: #{
+x: "0px",
+y: "0px",
+width: "0px",
+height: "0px",
+anchor: "center",
+},
+},
+logout ()
+),
+]);
+
+fn logout () {
+    box (#{ class: "logoutBackground", orientation: "v"}, [
+        box (#{ orientation: "h"}, [
+            imageButton ("notify-send pwr", "btn", "./power_settings_new_32dp_E3E3E3_FILL0_wght400_GRAD0_opsz40.svg", "#ffffff", 128 ),
+            imageButton ("notify-send pwr", "btn", "./power_settings_new_32dp_E3E3E3_FILL0_wght400_GRAD0_opsz40.svg", "#ffffff", 128 ),
+        ]),
+        box (#{ orientation: "h"}, [
+            imageButton ("notify-send pwr", "btn", "./power_settings_new_32dp_E3E3E3_FILL0_wght400_GRAD0_opsz40.svg", "#ffffff", 128 ),
+            imageButton ("notify-send pwr", "btn", "./power_settings_new_32dp_E3E3E3_FILL0_wght400_GRAD0_opsz40.svg", "#ffffff", 128 ),
+        ]),
+    ]);
+};
+
+fn greeter(stk, bat) {
+    let hour = localsignal(#{ 
+        type: "poll", 
+        initial: "", 
+        cmd: "date +%H", 
+        interval: "15m" 
+    });
+    
+    let min = localsignal(#{ 
+        type: "poll", 
+        initial: "", 
+        cmd: "date +%M", 
+        interval: "30s" 
+    });
+    
+    let month = localsignal(#{ 
+        type: "poll", 
+        initial: "", 
+        cmd: "date +%m", 
+        interval: "30min" 
+    });
+    
+    let day = localsignal(#{ 
+        type: "poll", 
+        initial: "", 
+        cmd: "date +%d", 
+        interval: "30m" 
+    });
+
+ 
+    box (#{ class: "bbox", orientation: "v", space_evenly: false, vexpand: true}, [
+        stack (#{ widget_name: "dateStack", selected: stk, transition: "crossfade" }, [
+            eventbox (#{ onclick: "ewwii wc property-update --widget dateStack visible-child-name=1" , }, [
+            box (#{ hexpand: true, halign: "center", space_evenly: false, orientation: "V" }, [
+            localbind(#{
+                label: hour
+            }, [
+            label (#{ class: "timeDateLabelTop", text: `hour` }),
+            ]),
+            localbind(#{
+                label: min
+            }, [
+            label (#{ class: "timeDateLabelBottom", text: `min` }),
+            ]),
+            ]),
+            ]),
+
+            
+            eventbox (#{ onclick: "ewwii wc property-update --widget dateStack visible-child-name=0" , }, [
+            box (#{ halign: "center", space_evenly: false, orientation: "V" }, [
+            localbind(#{
+                label: month
+            }, [
+            label (#{ class: "timeDateLabelTop", text: `month` }),
+            ]),
+            localbind(#{
+                label: day
+            }, [
+            label (#{ class: "timeDateLabelBottom", text: `day` }),
+            ]),
+            ]),
+            ]),
+            
+            label (#{text: `a`, valign: "start" }),
+
+        ]),
+        box (#{class: "b", halign: "center", orientation: "v", space_evenly: false}, [
+        imageButton ("notify-send a", "test", "/home/semper/.config/ewwii/arrow_drop_down_32dp_E3E3E3_FILL0_wght400_GRAD0_opsz40.svg", "#dfb7ff", 48),
+        revealer (#{ widget_name: "reveal", vexpand: true, transition: "slidedown" }, [
+            box (#{ orientation: "v", vexpand: true, space_evenly: false}, [
+            label (#{text: `a`, valign: "start" }),
+        imageButton ("notify-send a", "test", "/home/semper/.config/ewwii/terminal.svg", "#dfb7ff", 16),
+        imageButton ("notify-send a", "test", "/home/semper/.config/ewwii/folder_32dp_E3E3E3_FILL0_wght400_GRAD0_opsz40(1).svg", "#dfb7ff", 16),
+        imageButton ("notify-send a", "test", "/home/semper/.config/ewwii/web_32dp_E3E3E3_FILL0_wght400_GRAD0_opsz40(1).svg", "#dfb7ff", 16),
+        imageButton ("notify-send a", "test", "/home/semper/.config/ewwii/chat_32dp_E3E3E3_FILL0_wght400_GRAD0_opsz40(1).svg", "#dfb7ff", 16),
+        ]),
+        ]),
+        ]),
+        
+        
+        stack (#{ widget_name: "barStack", selected: 1, transition: "slideup", vexpand: true}, [
+        overlay (#{}, [
+        progress (#{ eval_ignore: true, widget_name: "bat", value: "95", orientation: "v", flipped: true }),
+        image(#{path: bat, valign: "end", active: false, style: "margin-bottom: 20px;"}), 
+        ]),
+
+        overlay (#{}, [
+        scale (#{ widget_name: "bri", eval_ignore: true, value: "100", orientation: "v", flipped: true, onchange: "brightnessctl s {}% > /dev/null", max: "101" })
+        ]),
+
+        overlay (#{}, [
+        scale (#{ widget_name: "vol", eval_ignore: true, value: "100", orientation: "v", flipped: true, onchange: "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%" }),
+        image(#{path: "/home/semper/.config/ewwii/volume_up_32dp_E3E3E3_FILL0_wght400_GRAD0_opsz40.svg", valign: "end", active: false, style: "margin-bottom: 20px;"}), 
+        ]),
+        ]),
+    ]);
+};
+
+
+fn imageButton( cmd, class, path, fill, scale) {
+    eventbox(#{ onclick: cmd, class: "btn23"}, [
+    image(#{ class: class, path: path, fill_svg: fill, image_width: scale, can_shrink: true,  content_fit: "scaledown"}),
+    ]);
+};

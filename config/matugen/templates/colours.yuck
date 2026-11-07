@@ -1,0 +1,3 @@
+(defvar fg "{{colors.primary.default.hex}}")
+(defvar bg "{{colors.surface.default.hex}}")
+(defvar on_surface "{{colors.on_surface.default.hex}}")

@@ -1,0 +1,22 @@
+[[plugin.deps]]
+use = "yazi-rs/plugins:mount"
+rev = "25d992d"
+hash = "dbfc342600993eefbb055bff145fa22a"
+
+[[plugin.deps]]
+use = "BBOOXX/file-actions"
+rev = "aeeb2dc"
+hash = "c785146bf10d44ac7301d9c0bf90cbca"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "25d992d"
+hash = "17ebde15c4349f90aedbc45984b98db2"
+
+[[plugin.deps]]
+use = "walldmtd/fs-usage"
+rev = "1b42083"
+hash = "28ac3655541321f006c25463419d719a"
+
+[flavor]
+deps = []

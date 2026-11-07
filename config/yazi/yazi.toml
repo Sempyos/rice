@@ -1,0 +1,26 @@
+[plugin]
+  prepend_preloaders = [
+    # Replace magick, image, video with mediainfo
+    # { mime = "{audio,video,image}/*", run = "mediainfo" },
+    # { mime = "application/subrip", run = "mediainfo" },
+  ]
+  prepend_previewers = [
+    # Replace magick, image, video with mediainfo
+    # { mime = "{audio,video,image}/*", run = "mediainfo"},
+    # { mime = "application/subrip", run = "mediainfo" },
+  ]
+  # There are more extensions which are supported by mediainfo.
+  # Just add file's MIME type to `previewers`, `preloaders` above.
+  # https://mediaarea.net/en/MediaInfo/Support/Formats
+
+[mgr]
+ratio = [1, 4, 12]
+show_hidden = true
+sort_by = "mtime"
+sort_reverse = true
+sort_dir_first = true
+
+[preview]
+wrap = "yes"
+max_width  = 2560
+max_height = 2560

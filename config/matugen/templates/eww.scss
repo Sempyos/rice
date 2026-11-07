@@ -1,0 +1,405 @@
+/*Unset Everything*/
+* {
+  all:unset;
+  font-family: Roboto;
+}
+
+/*Colours*/
+$fg: {{colors.primary.default.hex}};
+$on-fg: {{colors.primary_container.default.hex}};
+
+$bg: {{colors.surface.default.hex}};
+$bg-trough: {{colors.surface_container_low.default.hex}};
+$surface-high: {{colors.surface_container_high.default.hex}};
+$on-surface: {{colors.on_surface.default.hex}};
+
+$tertiary: {{colors.tertiary.default.hex}};
+$on-tertiary: {{colors.tertiary_container.default.hex}};
+
+$error: {{colors.error.default.hex}};
+$on-error: {{colors.on_error.default.hex}};
+
+/*Rounding*/
+$rounding: 16px;
+
+/* font-family: "Roboto"; */
+
+
+/*Time Date Label*/
+.timeDateLabel {
+  font-size: 24px;
+  font-feature-settings: "tnum";
+  color: $fg;
+  margin-top: 16px;
+  background-color: $bg-trough;
+  border-radius: 32px;
+  min-height: 80px;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+/*Dynamic Battery Progress Bar Colours*/
+progressbar {
+  &.normalBattery progress {
+    background-color: $fg;
+  }
+  
+  &.mediumBattery progress {
+    background-color: $tertiary;
+  }
+
+  &.lowBattery progress {
+    background-color: $error;
+  }
+}
+
+/*Progress Bar*/
+progressbar trough {
+  border-radius: 50px;
+  background-color: $bg-trough;
+  min-width: 48px;
+}
+
+progressbar trough progress {
+  border-radius: 50px;
+  min-width: 48px;
+  min-height: 48px;
+  background-repeat: no-repeat;
+  background-position: center 4px;
+}
+
+.colourBox {
+  background-color: $bg-trough;
+  border-radius: 32px 32px 32px 32px;
+  margin-left: 16px;
+  margin-right: 16px;
+  border-radius: 100;
+  min-height: 48px;
+  min-width: 48px;
+}
+
+.menuButton {
+  min-height: 48px;
+  min-width: 48px;
+}
+
+.musicBox {
+  margin-bottom: 16px;
+}
+
+.iconSpacing {
+  margin-bottom: 8px;
+}
+
+.previousButton {
+  margin-top: 4px;
+  -gtk-icon-transform: rotate(90deg);
+}
+
+.nextButton {
+  -gtk-icon-transform: rotate(90deg);
+}
+
+.playButton {
+  -gtk-icon-transform: rotate(90deg);
+}
+
+.note {
+  margin-top: 4px;
+  min-width: 48px;
+  min-height: 48px;
+}
+
+/*Scale*/
+scale trough {
+  border-radius: 50px;
+  background-color: $bg-trough;
+  min-width: 48px;
+}
+
+
+scale.brightnessScale trough highlight {
+  border-radius: 50px;
+  background-color: $fg;
+  min-width: 48px;
+  min-height: 48px;
+  background-image: url("/home/semper/.config/eww/icons/coloured/brightness.svg");
+  background-repeat: no-repeat;
+  background-position: center 4px;
+}
+
+scale.volumeScale trough highlight {
+  border-radius: 50px;
+  background-color: $fg;
+  min-width: 48px;
+  min-height: 48px;
+  background-image: url("/home/semper/.config/eww/icons/coloured/volume.svg");
+  background-repeat: no-repeat;
+  background-position: center 4px;
+}
+
+
+.iconContainer {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.OSDBox {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+/*Activate Window*/
+window.activate {
+  background: rgba({{colors.surface.default.red}}, {{colors.surface.default.green}}, {{colors.surface.default.blue}}, 0.99);
+  border-radius: 100px;
+}
+
+.activeBox {
+  margin-left: 48px;
+  margin-right: 48px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.activeColourBox {
+  background-color: $bg-trough;
+  border-radius: 100px;
+}
+
+.activeLogo {
+  margin-right: 8px;
+  margin-left: 16px;
+}
+
+.activeText {
+  margin-right: 16px;
+  color: $fg;
+  font-size: 32px;
+}
+
+/*Wallpaper Selector Window*/
+window.wallpaperSelector {
+  background: rgba({{colors.surface.default.red}}, {{colors.surface.default.green}}, {{colors.surface.default.blue}}, 0.99);
+  border-radius: $rounding;
+  border-width: 4px;
+  border-style: solid;
+  border-color: $fg;
+}
+
+/*Wallpaper Container*/
+.wallpaperContainer {
+  margin: 16px;
+}
+
+/*Wallpaper Icon Button*/
+.wallpaperArrowIconLeft, .wallpaperSelectorIcon, .wallpaperArrowIconRight {
+  margin: 16px;
+}
+
+.eventBox:hover {
+  .wallpaperArrowIconLeft {  
+    animation: pushLeft 1.5s ease infinite;
+  }
+  .wallpaperArrowIconRight {  
+    animation-name: pushRight;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+  }
+  .wallpaperSelectorIcon {  
+    animation-name: wiggleUp;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+  }
+}
+
+window.darken {
+  background-color: rgba({{colors.surface.default.red}}, {{colors.surface.default.green}}, {{colors.surface.default.blue}},0.6);
+}
+
+window.logout {
+  background-color: rgba({{colors.surface.default.red}}, {{colors.surface.default.green}}, {{colors.surface.default.blue}},0.9);
+  border-radius: 144px;
+}
+
+/*Wallpaper Selector Window*/
+window.pill {
+  background: rgba({{colors.surface.default.red}}, {{colors.surface.default.green}}, {{colors.surface.default.blue}}, 0.99);
+  border-radius: 96px;
+}
+
+
+
+.logoutPadding {
+  padding: 32px;
+  margin: 32px;
+  transition: background 500ms ease, -gtk-icon-transform 500ms ease;
+}
+
+.logoutTopLeft {
+  border-radius: 192px;
+  background-color: $bg-trough;
+}
+
+.logoutTopRight {
+  border-radius: 192px;
+  background-color: $bg-trough;
+}
+
+.logoutBottomLeft {
+  border-radius: 192px;
+  background-color: $bg-trough;
+}
+
+.logoutBottomRight {
+  border-radius: 192px;
+  background-color: $bg-trough;
+}
+
+
+
+@keyframes pushLeft {
+  0%  {-gtk-icon-transform: translateX(-1px);}
+  25%  {-gtk-icon-transform: translateX(-7px);}
+  50%  {-gtk-icon-transform: translateX(-9px) scaleX(1.2);}
+  75%  {-gtk-icon-transform: translateX(-7px);}
+  100%  {-gtk-icon-transform: translateX(-1px);}
+}
+
+@keyframes pushRight {
+  0%  {-gtk-icon-transform: translateX(1px);}
+  25%  {-gtk-icon-transform: translateX(7px);}
+  50%  {-gtk-icon-transform: translateX(9px) scaleX(1.2);}
+  75%  {-gtk-icon-transform: translateX(7px);}
+  100%  {-gtk-icon-transform: translateX(1px);}
+}
+
+
+
+@keyframes spin {
+  from {
+    -gtk-icon-transform: rotate(0deg);
+  }
+  to {
+    -gtk-icon-transform: rotate(360deg);
+  }
+}
+
+@keyframes wiggle {
+  0% {-gtk-icon-transform: rotate(0deg);}
+  25% {-gtk-icon-transform: rotate(25deg);}
+  50% {-gtk-icon-transform: rotate(0deg);}
+  75% {-gtk-icon-transform: rotate(-25deg);}
+  100% {-gtk-icon-transform: rotate(0deg);}
+}
+
+@keyframes sideSlide {
+  0%  {-gtk-icon-transform: translateY(0px);}
+  20%  {-gtk-icon-transform: translateY(3px) scaleY(0.8);}
+  40%  {-gtk-icon-transform: translateY(-3px);}
+  60%  {-gtk-icon-transform: translateY(-6px) scaleY(1.2);}
+  80%  {-gtk-icon-transform: translateY(-3px);}
+  100%  {-gtk-icon-transform: translateY(0px);}
+}
+
+@keyframes bulge {
+  0%  {-gtk-icon-transform: scale(1.0);}
+  25%  {-gtk-icon-transform: scale(1.1);}
+  50%  {-gtk-icon-transform: scale(1.2);}
+  75%  {-gtk-icon-transform: scale(1.1);}
+  100%  {-gtk-icon-transform: scale(1.0);}
+}
+
+@keyframes raise {
+  0%  {-gtk-icon-transform: translateX(0px);}
+  25%  {-gtk-icon-transform: translateX(8px); margin-left: 24px;}
+  50%  {-gtk-icon-transform: translateX(0px); margin-left: 16px;}
+  75%  {-gtk-icon-transform: translateX(-8px); margin-left: 8px;}
+  100%  {-gtk-icon-transform: translateX(0px); margin-left: 16px;}
+}
+
+@keyframes wiggleUp {
+  0%  {-gtk-icon-transform: translateY(0px);}
+  20% {-gtk-icon-transform: translateY(3px);}
+  40%  {-gtk-icon-transform: translateY(-3px) rotate(25deg);}
+  60%  {-gtk-icon-transform: translateY(-5px) rotate(0deg);}
+  80%  {-gtk-icon-transform: translateY(-3px) rotate(-25deg);}
+  100%  {-gtk-icon-transform: translateY(0px);}
+}
+
+
+@keyframes mediaWiggleUp {
+  0%  {-gtk-icon-transform: translateY(0px) rotate(90deg);}
+  20% {-gtk-icon-transform: translateY(3px) rotate(90deg);}
+  40%  {-gtk-icon-transform: translateY(-3px) rotate(115deg);}
+  60%  {-gtk-icon-transform: translateY(-6px) rotate(90deg);}
+  80%  {-gtk-icon-transform: translateY(-3px) rotate(65deg);}
+  100%  {-gtk-icon-transform: translateY(0px) rotate(90deg);}
+}
+
+button:hover {
+
+  .iconSpacing {
+    animation: wiggleUp 0.5s linear 1;
+  }
+
+  .menuButton, .note, .stopButton {
+    animation: sideSlide 0.6s ease-in 2;
+  }
+
+  .activeLogo {
+    animation: raise 1s linear  1;
+  }
+  
+  .previousButton, .playButton, .nextButton {
+    animation: mediaWiggleUp 0.5s linear 1;
+  }
+  .osIcon {
+  animation-name: bulge;
+  animation-duration: 2s;
+  animation-iteration-count: 2;
+  animation-timing-function: linear;
+  }
+
+  .navigationButton {
+    background: $surface-high;
+    -gtk-icon-transform: scale(1.2);
+    border-radius: 96px;
+  }
+
+  .logoutPadding{
+    background-color: $surface-high;
+    -gtk-icon-transform: scale(1.2);
+  }
+
+  .desktopIcon {
+    animation: wiggleUp 0.5s linear 1;
+  }
+}
+
+.mainBox {
+  background: rgba({{colors.surface.default.red}}, {{colors.surface.default.green}}, {{colors.surface.default.blue}}, 0.99);
+  border-radius: 80px;
+  padding: 10px;
+}
+
+.statusLabel {
+  color: $on-surface;
+  font-size: 18px;
+  letter-spacing: 1.5px;
+}
+
+.batteryLabel {
+  margin-left: 2px;
+}
+
+.desktopIcon {
+  margin: 32px;
+}
+
+.desktopIcon {
+  transition: background 150ms linear, -gtk-icon-transform 150ms linear;
+  border-radius: 90px;
+}

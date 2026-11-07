@@ -1,0 +1,305 @@
+;Colour Variables
+; (include "colours.yuck")
+
+;os-release
+; (defvar osRelease "Android")
+; (defvar osHome "https://android.com")
+; (defvar osIcon "icons/android.svg")
+; (defpoll osPoll :interval "8s" :initial "" :run-while infoPolling "scripts/update.fish")
+
+
+; ;Brightness
+; (defvar currentBrightness 0)
+
+; ;Volume
+; (defvar currentVolume 0)
+
+; ;Battery
+; (defvar batteryPercentage 100)
+; (defvar batteryStatus "normalBattery")
+; (defpoll batteryIcon :interval "30s" :initial "icons/battery7.svg" :run-while polling "scripts/battery.fish")
+
+; ;Time/Date
+(defpoll time :interval "40s" :initial "00:00" "date +%H:%M")
+(defpoll bat :interval "40s" :initial "0" "cat /sys/class/power_supply/BAT*/capacity")
+; (defpoll date :interval "40s" :initial "00·00" "date +%m%n%d")
+
+; ;Wallpapers
+; (defvar previousWallpaper "/home/semper/WALLPAPERS/Vinqou 6.png")
+; (defvar nextWallpaper "/home/semper/WALLPAPERS/Vinqou 6.png")
+
+; ;Polling
+; (defvar polling false)
+; (defvar infoPolling true)
+
+; ;Stacks
+; (defvar timeDateSelector "0")
+; (defvar wallpaperSelection "0")
+
+; ;Animation
+; (defvar wallpaperSlide "slideleft")
+
+
+;Activate niri + os-relase info
+; (defwidget activate []
+;   (box :space-evenly false :orientation "v" :class "activeBox"
+;     (box :space-evenly false :orientation "h" :class "activeColourBox"
+;       (imageButtonWH :cmd "xdg-open https://github.com/YaLTeR/niri" :class "activeLogo" :width "64" :height "64" :path "icons/niri.svg" :fill fg)
+;       (label :class "activeText" :xalign "0" :text "Activate niri"))
+;     (box :height "16")
+;     (box :space-evenly false :orientation "h" :class "activeColourBox"
+;       (imageButtonWH :cmd "xdg-open ${osHome}" :class "activeLogo" :width "64" :height "64" :path osIcon :fill fg)
+;       (label :class "activeText" :xalign "0" :text "Powered by ${osRelease}™${osPoll}"))))
+
+; ;Wallpaper Selector
+; (defwidget wallpaperSelector []
+; (box :class "wallpaperContainer"
+;   (overlay
+;     (stack :selected wallpaperSelection :transition wallpaperSlide
+;       (image :path previousWallpaper :image-width 512 :image-height 512)
+;       (image :path nextWallpaper :image-width 512 :image-height 512))
+;     (centerbox :orientation "h"
+;       (eventbox :class "eventBox" :onclick "scripts/list-wallpapers.fish -p &"
+;         (image :class "wallpaperArrowIconLeft" :path "icons/arrow_circle_left.svg" :halign "start" :fill-svg fg :image-width 48 :image-height 48))
+;       (eventbox :class "eventBox" :width "128" :onclick "scripts/list-wallpapers.fish -q &"
+;         (image :halign "center" :class "wallpaperSelectorIcon" :style "background-color: ${fg}; border-radius: 100px;" :width "192" :path "icons/check.svg" :valign "end" :fill-svg bg :image-width 48 :image-height 48))
+;       (eventbox :class "eventBox" :onclick "scripts/list-wallpapers.fish -n &"
+;         (image :class "wallpaperArrowIconRight" :path "icons/arrow_circle_right.svg" :halign "end" :fill-svg fg :image-width 48 :image-height 48))))))
+
+
+
+
+
+
+(defwidget logout []
+  (box :space-evenly false :orientation "v"
+    (box :space-evenly false :orientation "h"
+      (imageButtonWHL :cmd "systemctl sleep && eww close darken logout" :class "logoutTopLeft logoutPadding" :width "128" :height "128" :path "icons/sleep.svg" :fill "#ff7aac")
+      (imageButtonWHL :cmd "systemctl hibernate && eww close darken logout" :class "logoutTopRight logoutPadding" :width "128" :height "128" :path "icons/hibernate.svg" :fill "#ff7aac"))
+    (box :space-evenly false :orientation "h"
+      (imageButtonWHL :cmd "systemctl poweroff && eww close darken logout" :class "logoutBottomLeft logoutPadding" :width "128" :height "128" :path "icons/shutdown.svg" :fill "#ff7aac")
+      (imageButtonWHL :cmd "systemctl reboot && eww close darken logout" :class "logoutBottomRight logoutPadding" :width "128" :height "128" :path "icons/reboot.svg" :fill "#ff7aac"))))
+
+
+; (defvar sliderSelector "0")
+; (defvar menuRevealer "false")
+; (defvar hoverOrClickLock "false")
+; (defvar mediaPlaying "Playing")
+; (defvar mediaMenuRevealer "false")
+; (defpoll mediaButton :interval "8s" :initial "false" :run-while infoPolling "scripts/playerctl.fish")
+; (defvar fullOSD "true")
+
+
+; (defwidget pill []
+;   (eventbox :onhoverlost {hoverOrClickLock ? "" : "eww close pill && eww update polling=false"}
+;     (box :orientation "v" :space-evenly false
+;       (stack :selected timeDateSelector :transition "crossfade" 
+;         (buttonConstructor :cmd "eww update timeDateSelector=1" :class "timeDateLabel" :text "${time}")
+;         (buttonConstructor :cmd "eww update timeDateSelector=0" :class "timeDateLabel" :text "${date}"))
+;       (revealer :reveal fullOSD :duration 400 :transition "slidedown"
+;         (box :orientation "v" :class "iconContainer colourBox" :space-evenly false
+;           (imageButtonWH :cmd "eww update menuRevealer=${menuRevealer ? false : true}" :width "48" :height "48" :class "menuButton" :path {menuRevealer ? "icons/arrow_up.svg" : "icons/arrow_down.svg"} :fill fg)
+;           (revealer :reveal menuRevealer :duration 400 :transition "slidedown"
+;             (box :space-evenly true :orientation "v"
+;               (imageButtonWH :cmd "gtk-launch footclient" :width "32" :height "32" :class "iconSpacing" :path "icons/terminal.svg" :fill fg)
+;               (imageButtonWH :cmd "gtk-launch yazi" :width "32" :height "32" :class "iconSpacing" :path "icons/files.svg" :fill fg)
+;               (imageButtonWH :cmd "gtk-launch firefox" :width "32" :height "32" :class "iconSpacing" :path "icons/web.svg" :fill fg)
+;               (imageButtonWH :cmd "gtk-launch discord" :width "32" :height "32" :class "iconSpacing" :path "icons/chat.svg" :fill fg)
+;               (imageButtonWH :cmd "eww open-many darken logout" :width "32" :height "32" :class "iconSpacing" :path "icons/power.svg" :fill fg)))))
+;       (box :orientation "v" :vexpand true :class {fullOSD ? "" : "OSDBox"}
+;         (stack :selected sliderSelector :halign "center"
+;           (progress :class batteryStatus :style "progressbar trough progress{ background-image: url('${batteryIcon}'); }" :orientation "v" :value batteryPercentage :flipped true)
+;           (scale :class "brightnessScale" :orientation "v" :min "0" :max "101" :value currentBrightness :flipped true :onchange "brightnessctl s {}% >/dev/null && /home/semper/.config/eww/scripts/osd.fish 1")
+;           (scale :class "volumeScale" :orientation "v" :min "0" :max "101" :value currentVolume :flipped true :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}% && eww poll currentVolume")))
+;       (revealer :reveal fullOSD :duration 400 :transition "slidedown"
+;         (box :orientation "v" :style "margin-top: 16px;"
+;           (revealer :reveal mediaButton :duration 400 :transition "slidedown"
+;             (box :orientation "v" :space-evenly false :class "musicBox colourBox"
+;               (imageButtonWH :width "32" :height "32" :cmd {mediaMenuRevealer ? "eww update mediaMenuRevealer=false" : "eww update mediaMenuRevealer=true" } :class "note" :path "icons/music_note.svg" :fill fg)
+;               (revealer :reveal mediaMenuRevealer :duration 400 :transition "slidedown"
+;                 (box :orientation "v" :space-evenly false
+;                   (imageButtonWH :width "32" :height "32" :cmd "playerctl previous" :class "previousButton iconSpacing" :path "icons/skip_previous.svg" :fill fg) 
+;                   (imageButtonWH :width "32" :height "32" :cmd "playerctl play-pause && eww update mediaPlaying=$(playerctl status)" :class "playButton iconSpacing" :path {mediaPlaying == "Playing" ? "icons/pause.svg" : "icons/play.svg"} :fill fg)
+;                   (imageButtonWH :width "32" :height "32" :cmd "playerctl next" :class "nextButton iconSpacing" :path "icons/skip_next.svg" :fill fg)
+;                   (imageButtonWH :width "32" :height "32" :cmd "playerctl stop" :class "stopButton iconSpacing" :path "icons/stop_circle.svg" :fill fg)
+; )))))))))
+
+
+
+
+
+; ;Widget Constructors
+; ;Prefer
+; (defwidget imageButton [ cmd class path fill ]
+;   (button :onclick cmd
+;     (image :class class :path path :fill-svg fill)))
+
+(defwidget imageButtonWHL [ ?buttonClass cmd class width height path fill ]
+  (eventbox :class "eb" :onclick cmd :width 256 :height 256
+    (image :class class :content-fit "scaledown" :can-shrink false :image-width width :image-height height :path path :fill-svg fill)))
+
+
+(defwidget imageButtonWH [ ?buttonClass cmd class width height path ?fill ?txt ]
+  (eventbox :onclick cmd :orientation "h" :space-evenly false :style "margin-top: 16px; margin-bottom: 16px; margin-left: 16px; "
+  (box :space-evenly false
+    (image :class class :content-fit "scaledown" :can-shrink false :image-width width :image-height height :path path )
+    (label :text "${txt}" :valign "center"))))
+
+; ;Dont' Prefer
+; (defwidget buttonConstructor [ cmd class text ]
+;   (button :onclick cmd
+;     (label :class class :text text)))
+
+; ;Dont' Use
+; (defwidget labelConstructor [ class text va ha ]
+;   (label :class class :text text :valign va :halign ha))
+
+
+
+
+; ;Activate niri + os-release info
+; (defwindow activate
+;   :monitor 0
+;   :geometry (geometry :anchor "bottom left" :x "32px" :y "32px")
+;   :stacking "bottom"
+;   (activate))
+
+; ;Wallpaper Selector
+; (defwindow wallpaperSelector
+;   :monitor 0
+;   :geometry (geometry :x "50%" :y "50%" :anchor "center")
+;   :stacking "fg"
+;   (wallpaperSelector))
+
+;Wallpaper Selector
+(defwindow logout
+  :monitor 0
+  :geometry (geometry :anchor "center")
+  :stacking "fg"
+  (logout))
+
+; (defwindow darken
+;   :monitor 0
+;   :geometry (geometry :width "100%" :height "100%")
+;   :stacking "fg"
+;   :namespace "darken"
+;   (eventbox :onclick "eww close darken logout"))
+
+; (defwindow pill
+;   :monitor 0
+;   :geometry (geometry :x "16" :width "80" :height "512" :anchor "center right")
+;   :stacking "fg"
+;   (pill))
+
+; (defwindow pillHover
+;   :monitor 0
+;   :geometry (geometry :width "64" :height "512" :anchor "center right")
+;   :stacking "fg"
+;   (eventbox :onhover "eww open pill && eww update polling=true" :onclick {hoverOrClickLock ? "eww close pill && eww update hoverOrClickLock=false polling=false" : "eww open pill && eww update hoverOrClickLock=true polling=true"}))
+
+; (defwindow navigationChip
+;   :monitor 0
+;   :geometry (geometry :x "0" :y "8" :width "16%" :height "16" :anchor "bottom center")
+;   :stacking "fg"
+;   (navigationChip))
+
+; (defwindow statusChip
+;   :monitor 0
+;   :geometry (geometry :x "8" :y "8" :width "16" :height "16" :anchor "top right")
+;   :stacking "fg"
+;   (statusChip))
+  
+; (defwindow desktopIcons
+;   :monitor 0
+;   :geometry (geometry :x "0" :y "0" :width "100%" :height "100%" :anchor "top left")
+;   :stacking "bg"
+;   (desktopIcons))
+
+; (defwidget navigationChip []
+;   (eventbox :onscroll "scripts/scrollBar.fish {}"
+;   (box :class "mainBox" :space-evenly true :orientation "h"
+;     (imageButtonWH :width "48" :height "48" :cmd "niri msg action focus-window-previous" :class "navigationButton" :path "/home/semper/Downloads/arrow_back_2_32dp_E3E3E3_FILL1_wght400_GRAD0_opsz40.svg" :fill "${on_surface}")
+;     (imageButtonWH :width "32" :height "32" :cmd "niri msg action focus-workspace 99" :class "navigationButton" :path "/home/semper/Downloads/circle_32dp_E3E3E3_FILL1_wght400_GRAD0_opsz40.svg" :fill "${on_surface}")
+;     (imageButtonWH :width "32" :height "32" :cmd "niri msg action toggle-overview" :class "navigationButton" :path "/home/semper/Downloads/square_32dp_E3E3E3_FILL1_wght400_GRAD0_opsz40.svg" :fill "${on_surface}")
+; )))
+
+; (defpoll timePoll :interval "40s" :initial "00:00" :run-while polling "date +%H:%M")
+
+; (defwidget statusChip []
+;   (box :class "mainBox" :space-evenly false :orientation "h" :halign "end"
+;     (label :text "${timePoll} |" :class "statusLabel")
+;     (image :path "${batteryIcon}" :fill-svg "${on_surface}" :class "batteryLabel")
+;     (label :text "${batteryPercentage}%" :class "statusLabel")
+; ))
+
+; (defwidget desktopIcons []
+;   (box :space-evenly false :orientation "h"
+;  (box :space-evenly false :orientation "v" (imageButtonWH :width "64" :height "64" :cmd "gtk-launch btop.desktop & disown" :class "desktopIcon" :path "/usr/share/icons/hicolor/scalable/apps/btop.svg") (imageButtonWH :width "64" :height "64" :cmd "gtk-launch chromium.desktop & disown" :class "desktopIcon" :path "/usr/share/icons/hicolor/256x256/apps/chromium.png") (imageButtonWH :width "64" :height "64" :cmd "gtk-launch de.haeckerfelix.Fragments.desktop & disown" :class "desktopIcon" :path "/usr/share/icons/hicolor/scalable/apps/de.haeckerfelix.Fragments.svg") (imageButtonWH :width "64" :height "64" :cmd "gtk-launch foot-server.desktop & disown" :class "desktopIcon" :path "/usr/share/icons/hicolor/scalable/apps/foot.svg") (imageButtonWH :width "64" :height "64" :cmd "gtk-launch foot.desktop & disown" :class "desktopIcon" :path "/usr/share/icons/hicolor/scalable/apps/foot.svg") (imageButtonWH :width "64" :height "64" :cmd "gtk-launch footclient.desktop & disown" :class "desktopIcon" :path "/usr/share/icons/hicolor/scalable/apps/foot.svg") (imageButtonWH :width "64" :height "64" :cmd "gtk-launch helix.desktop & disown" :class "desktopIcon" :path "/usr/share/icons/hicolor/256x256/apps/helix.png") (imageButtonWH :width "64" :height "64" :cmd "gtk-launch io.github.nozwock.Packet.desktop & disown" :class "desktopIcon" :path "/usr/share/icons/hicolor/scalable/apps/io.github.nozwock.Packet.svg") (imageButtonWH :width "64" :height "64" :cmd "gtk-launch io.gitlab.zehkira.Monophony.desktop & disown" :class "desktopIcon" :path "/usr/share/icons/hicolor/scalable/apps/io.gitlab.zehkira.Monophony.svg") (imageButtonWH :width "64" :height "64" :cmd "gtk-launch mpv.desktop & disown" :class "desktopIcon" :path "/usr/share/icons/hicolor/scalable/apps/mpv.svg")) (box :space-evenly false :orientation "v" (imageButtonWH :width "64" :height "64" :cmd "gtk-launch org.gnome.Calendar.desktop & disown" :class "desktopIcon" :path "/usr/share/icons/hicolor/scalable/apps/org.gnome.Calendar.svg") (imageButtonWH :width "64" :height "64" :cmd "gtk-launch org.gnome.Epiphany.desktop & disown" :class "desktopIcon" :path "/usr/share/icons/hicolor/scalable/apps/org.gnome.Epiphany.svg") (imageButtonWH :width "64" :height "64" :cmd "gtk-launch org.gnome.Fractal.desktop & disown" :class "desktopIcon" :path "/usr/share/icons/hicolor/scalable/apps/org.gnome.Fractal.svg") (imageButtonWH :width "64" :height "64" :cmd "gtk-launch org.gnome.gitlab.YaLTeR.Identity.desktop & disown" :class "desktopIcon" :path "/usr/share/icons/hicolor/scalable/apps/org.gnome.gitlab.YaLTeR.Identity.svg") (imageButtonWH :width "64" :height "64" :cmd "gtk-launch org.gnome.gitlab.YaLTeR.VideoTrimmer.desktop & disown" :class "desktopIcon" :path "/usr/share/icons/hicolor/scalable/apps/org.gnome.gitlab.YaLTeR.VideoTrimmer.svg") (imageButtonWH :width "64" :height "64" :cmd "gtk-launch org.gnome.Nautilus.desktop & disown" :class "desktopIcon" :path "/usr/share/icons/hicolor/scalable/apps/org.gnome.Nautilus.svg") (imageButtonWH :width "64" :height "64" :cmd "gtk-launch org.gnome.World.Secrets.desktop & disown" :class "desktopIcon" :path "/usr/share/icons/hicolor/scalable/apps/org.gnome.World.Secrets.svg") (imageButtonWH :width "64" :height "64" :cmd "gtk-launch org.inkscape.Inkscape.desktop & disown" :class "desktopIcon" :path "/usr/share/icons/hicolor/scalable/apps/org.inkscape.Inkscape.svg") (imageButtonWH :width "64" :height "64" :cmd "gtk-launch org.nickvision.tagger.desktop & disown" :class "desktopIcon" :path "/usr/share/icons/hicolor/scalable/apps/org.nickvision.tagger.svg") (imageButtonWH :width "64" :height "64" :cmd "gtk-launch satty.desktop & disown" :class "desktopIcon" :path "/usr/share/icons/hicolor/scalable/apps/satty.svg")) (box :space-evenly false :orientation "v" (imageButtonWH :width "64" :height "64" :cmd "gtk-launch steam.desktop & disown" :class "desktopIcon" :path "/usr/share/icons/hicolor/256x256/apps/steam.png") (imageButtonWH :width "64" :height "64" :cmd "gtk-launch tartube.desktop & disown" :class "desktopIcon" :path "/usr/share/pixmaps/tartube.png") (imageButtonWH :width "64" :height "64" :cmd "gtk-launch vesktop.desktop & disown" :class "desktopIcon" :path "/usr/share/icons/hicolor/scalable/apps/vesktop.svg") (imageButtonWH :width "64" :height "64" :cmd "gtk-launch yazi.desktop & disown" :class "desktopIcon" :path "/usr/share/icons/hicolor/512x512/apps/yazi.png"))
+
+; ))
+
+
+
+(defwidget st []
+  (box :class "statusChip" :space-evenly true :orientation "v"
+  (box :class "statusChip" :space-evenly false :orientation "h"
+  (label :text "${time}" :valign "center")
+  (eventbox :space-evenly false :onhover "~/ewwii/target/release/ewwii wc property-update --widget 'reva' reveal-child=true" :onhoverlost "~/ewwii/target/release/ewwii wc property-update --widget 'reva' reveal-child=false" :onclick "~/.config/ewwii/toggle.fish"
+  (overlay
+  (progress :active true :class "batteryBar" :value bat :orientation "h" :flipped true)
+  (revealer :transition "crossfade" :widget-name "reva"
+  (label :text "${bat}%" :style {bat > 50 ? "color: #680014;" : "color: #F8DCDB;"}))
+  )))
+  (revealer :transition "slidedown" :reveal true
+  (label :text "manu"))
+  ))
+
+(defvar r true)
+
+(defwidget as []
+(revealer :transition "slideright" :reveal r :widget-name "rev"
+(box :style "background-image: linear-gradient(
+    to right,
+    #091614,
+    #09161499,
+    #09161400
+);"
+(scroll :hscroll false :propagate_natural_height true 
+(box :orientation "v" :space-evenly true
+(imageButtonWH :class "btn" :cmd "gtk-launch chromium.desktop" :width 32 :height 32 :path "/usr/share/icons/hicolor/256x256/apps/chromium.png" :txt "Chromium")
+(imageButtonWH :class "btn" :cmd "gtk-launch com.pocoguy.Muse.desktop" :width 32 :height 32 :path "/usr/share/icons/hicolor/scalable/apps/com.pocoguy.Muse.svg" :txt "Muse")
+(imageButtonWH :class "btn" :cmd "gtk-launch de.haeckerfelix.Fragments.desktop" :width 32 :height 32 :path "/usr/share/icons/hicolor/scalable/apps/de.haeckerfelix.Fragments.svg" :txt "Fragments" )
+(imageButtonWH :class "btn" :cmd "gtk-launch dev.faetalize.waytator.desktop" :width 32 :height 32 :path "/usr/share/icons/hicolor/512x512/apps/dev.faetalize.waytator.png" :txt "Waytator")
+(imageButtonWH :class "btn" :cmd "gtk-launch foot-server.desktop" :width 32 :height 32 :path "/usr/share/icons/hicolor/scalable/apps/foot.svg" :txt "Foot")
+(imageButtonWH :class "btn" :cmd "gtk-launch foot.desktop" :width 32 :height 32 :path "/usr/share/icons/hicolor/scalable/apps/foot.svg" :txt "Foot")
+(imageButtonWH :class "btn" :cmd "gtk-launch footclient.desktop" :width 32 :height 32 :path "/usr/share/icons/hicolor/scalable/apps/foot.svg" :txt "Foot")
+(imageButtonWH :class "btn" :cmd "gtk-launch helix.desktop" :width 32 :height 32 :path "/usr/share/icons/hicolor/256x256/apps/helix.png" :txt "Helix")
+(imageButtonWH :class "btn" :cmd "gtk-launch io.github.nozwock.Packet.desktop" :width 32 :height 32 :path "/usr/share/icons/hicolor/scalable/apps/io.github.nozwock.Packet.svg" :txt "Packet")
+(imageButtonWH :class "btn" :cmd "gtk-launch mpv.desktop" :width 32 :height 32 :path "/usr/share/icons/hicolor/scalable/apps/mpv.svg" :txt "mpv")
+(imageButtonWH :class "btn" :cmd "gtk-launch org.gnome.Calendar.desktop" :width 32 :height 32 :path "/usr/share/icons/hicolor/scalable/apps/org.gnome.Calendar.svg" :txt "Calendar")
+(imageButtonWH :class "btn" :cmd "gtk-launch org.gnome.Epiphany.desktop" :width 32 :height 32 :path "/usr/share/icons/hicolor/scalable/apps/org.gnome.Epiphany.svg" :txt "Web")
+(imageButtonWH :class "btn" :cmd "gtk-launch org.gnome.Fractal.desktop" :width 32 :height 32 :path "/usr/share/icons/hicolor/scalable/apps/org.gnome.Fractal.svg" :txt "Fractal")
+(imageButtonWH :class "btn" :cmd "gtk-launch org.gnome.gitlab.YaLTeR.Identity.desktop" :width 32 :height 32 :path "/usr/share/icons/hicolor/scalable/apps/org.gnome.gitlab.YaLTeR.Identity.svg" :txt "Identity")
+(imageButtonWH :class "btn" :cmd "gtk-launch org.gnome.gitlab.YaLTeR.VideoTrimmer.desktop" :width 32 :height 32 :path "/usr/share/icons/hicolor/scalable/apps/org.gnome.gitlab.YaLTeR.VideoTrimmer.svg" :txt "Video Trimmer")
+(imageButtonWH :class "btn" :cmd "gtk-launch org.gnome.Nautilus.desktop" :width 32 :height 32 :path "/usr/share/icons/hicolor/scalable/apps/org.gnome.Nautilus.svg" :txt "Files")
+(imageButtonWH :class "btn" :cmd "gtk-launch org.gnome.World.Secrets.desktop" :width 32 :height 32 :path "/usr/share/icons/hicolor/scalable/apps/org.gnome.World.Secrets.svg" :txt "Secrets")
+(imageButtonWH :class "btn" :cmd "gtk-launch org.inkscape.Inkscape.desktop" :width 32 :height 32 :path "/usr/share/icons/hicolor/scalable/apps/org.inkscape.Inkscape.svg" :txt "Inkscape")
+(imageButtonWH :class "btn" :cmd "gtk-launch org.nickvision.tagger.desktop" :width 32 :height 32 :path "/usr/share/icons/hicolor/scalable/apps/org.nickvision.tagger.svg" :txt "Tagger")
+(imageButtonWH :class "btn" :cmd "gtk-launch org.nickvision.tubeconverter.desktop" :width 32 :height 32 :path "/usr/share/icons/hicolor/scalable/apps/org.nickvision.tubeconverter.svg" :txt "Parabolic")
+(imageButtonWH :class "btn" :cmd "gtk-launch vesktop.desktop" :width 32 :height 32 :path "/usr/share/icons/hicolor/scalable/apps/vesktop.svg" :txt "Vesktop")
+(imageButtonWH :class "btn" :cmd "gtk-launch yazi.desktop" :width 32 :height 32 :path "/usr/share/icons/hicolor/512x512/apps/yazi.png" :txt "Yazi")
+)))
+))
+
+(defwindow statusChip
+  :monitor 0
+  :geometry (geometry :x "16" :y "16" :width "24" :height "32" :anchor "top right")
+  :stacking "fg"
+  :force-normal true
+  (st))
+
+(defwindow appScroll
+  :monitor 0
+  :geometry (geometry :height "100%" :anchor "center left")
+  :stacking "fg"
+  (as))

@@ -1,0 +1,225 @@
+$primary: #cfbcff;
+$surface: #15121c;
+$surface_container: #211e28;
+$on_surface: #e7e0ef;
+
+* {
+  all: unset;
+  /* font-size: 24px; */
+  /* font-family: "Roboto"; */
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;  
+}
+
+.logoutEventBox {
+  /* border-radius: 384px; */
+  margin-top: 256px;
+  margin-bottom: 256px;
+  background: $surface;
+  transition: border-radius 1s, margin 1s, background 1s, padding 1s;
+}
+
+.logoutEventBox:nth-child(1) {
+  border-radius: 128px 0px 0px 128px;
+  margin-left: 256px;
+}
+.logoutEventBox:nth-child(4) {
+  margin-right: 256px;
+  border-radius: 0px 128px 128px 0px;
+}
+
+.logoutBox {
+  border-radius: 48px;
+}
+
+
+.logoutEventBox:hover {
+      margin-top: 164px;
+      padding-left: 32px;
+      padding-right: 32px;
+      margin-bottom: 164px;
+      border-radius: 96px;
+      background: $primary;
+}
+
+.logoutImage:hover {
+/* transform: scale(2); */
+  animation: wiggleUp 0.7s ease-out 1;
+}
+
+@keyframes wiggleUp {
+  0%  {transform: translateY(0px);}
+  20% {transform: translateY(6px);}
+  40%  {transform: translateY(-3px) rotate(25deg);}
+  60%  {transform: translateY(-9px) rotate(0deg);}
+  80%  {transform: translateY(-3px) rotate(-25deg);}
+  100%  {transform: translateY(0px);}
+}
+
+
+@keyframes hop {
+  from {
+    transform: translateY(0px)
+  }
+  to {
+    transform: translateY(16px);
+  }
+}
+
+.pillBox {
+  background: $surface;
+  border-radius: 192px;
+}
+
+.pillBox:nth-child(2) {
+  background-image: url("file:///home/semper/Downloads/hqdefault.jpg");
+  border-radius: 192px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 6px solid $surface;
+}
+
+.time {
+  transform: translateY(2px);
+  margin-left: 8px;
+  min-width: 64px;
+  color: $on_surface;
+}
+
+.batteryBar {
+  min-height: 2px;
+  border-radius: 192px;
+  background: $surface_container;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin-right: 6px;
+  margin-left: 8px;
+  min-width: 128px;
+
+  trough {
+    min-height: 32px;
+    border-radius: 192px;
+    background: $surface_container;
+    progress {
+      background: $primary;
+      min-height: 32px;
+      border-radius: 192px;
+    }
+  }
+}
+
+.musicImage {
+  margin-right: 6px;
+}
+
+.mediaButton {
+  background: $surface;
+  border-radius: 99px;
+}
+
+.mediaButton:nth-child(2) {
+  border-radius: 64px 0px 0px 64px;
+}
+.mediaButton:nth-child(3) {
+  border-radius: 0px 64px 64px 0px;
+}
+/* .statusChip { */
+  /* border-radius: 32px; */
+  /* background: #1E1010; */
+/* } */
+
+/* .mbox { */
+  /* background: url("file:///home/semper/cherynxblur.png"); */
+  /* background-position: center; */
+  /* background-repeat: no-repeat; */
+  /* background-size: cover; */
+  /* border-radius: 32px; */
+/* } */
+
+/* .niriChip { */
+  /* border-radius: 96px; */
+  /* background: #1E100D; */
+  /* box-shadow: 0px 0px 24px #180B08; */
+  /* margin: 32px; */
+/* } */
+
+/* text { */
+  /* color: #DCC1BB; */
+  /* font-family: "Cherry Bomb"; */
+  /* font-size: 36px; */
+/* } */
+
+/* .niri { */
+  /* padding: 24px; */
+/* } */
+
+/* .mic { */
+  /* padding: 32px; */
+/* } */
+
+/* placeholder { */
+  /* color: #DCC1BB; */
+  /* font-family: "Cherry Bomb"; */
+  /* font-size: 36px; */
+  /* transform: translateY(1.5px); */
+/* } */
+
+/* label { */
+/* margin: 8px; */
+/* margin-left: 16px; */
+/* margin-right: 16px; */
+/* color: #F8DCDB; */
+/* transform: translateY(1.5px); */
+/* } */
+
+
+.fuck {
+  font-size: 144px;
+  color: $primary;
+  font-family: "Orbitron";
+  /* transform: rotate(90deg); */
+  text-shadow: 2px 3px 0px $surface;
+}
+
+.fuck:nth-child(2) {
+  font-size: 64px;
+  color: $primary;
+  font-family: "Orbitron";
+  transform: translateX(-4px);
+  text-shadow: 1px 2px 0px $surface;
+}
+
+.bb {
+  min-height: 512px;
+  border-radius: 32px 0px 32px 0px;
+  background: $surface;
+  min-width: 48px;
+  border-right: 2.5px solid $surface;
+  border-bottom: 1px solid $surface;
+
+  trough {
+    min-width: 48px;
+    /* border-radius: 192px; */
+    /* background: $surface_container; */
+    progress {
+      background: $primary;
+      min-width: 48px;
+      border-radius: 32px 0px 32px 0px;
+    }
+  }
+}
+
+.timeee {
+  font-size: 32px;
+  margin-bottom: 8px;
+  font-family: "Google Sans Flex";
+  font-variation-settings: 'ROND' 100, 'wght' 600;
+  color: $primary;
+}
+
+.notifbox {
+  background: #ff7aac;
+  transform: rotate(260deg);
+  /* padding-right: 80px; */
+}

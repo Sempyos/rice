@@ -1,0 +1,12 @@
+[Unit]
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/lib/soteria-polkit/soteria
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

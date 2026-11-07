@@ -1,0 +1,5 @@
+[editor]
+completion-replace = true
+
+[editor.file-picker]
+hidden = false

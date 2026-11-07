@@ -1,0 +1,29 @@
+tree([
+    defwindow(
+        "example",
+        #{
+        monitor: 0,
+        stacking: "fg",
+        // force_normal: true,
+        geometry: #{
+            x: "0%",
+            y: "16px",
+            width: "24%",
+            height: "56px",
+            anchor: "top center",
+            resizable: true,
+        },
+        },
+        top()
+        ),
+]);
+
+
+fn top() {
+    box (#{ class: "mainBox" }, [
+        box (#{ halign: "start" }, [
+            label(#{ class: "dateLabel", text: "12:34.!8"}),
+            image(#{ path: "/home/semper/.config/eww/icons/round/folder.svg", content_fit: "scaledown", can_shrink: false, image_width: 30})
+        ]),
+    ]);
+};

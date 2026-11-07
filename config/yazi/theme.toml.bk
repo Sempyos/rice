@@ -1,0 +1,113 @@
+[manager]
+cwd = { fg = "#ffb3b2" }
+
+hovered         = { fg = "#680014", bg = "#ffb3b2" }  # surface + tertiary_fixed
+preview_hovered = { fg = "#680014", bg = "#ffb3b2" }  # surface + primary
+
+find_keyword  = { fg = "#ffdad9", bold = true }     # secondary
+find_position = { fg = "#410008", bg = "reset", bold = true }  # tertiary
+
+marker_copied   = { fg = "#ffdbd0", bg = "#ffdbd0" }   # primary
+marker_cut      = { fg = "#feb788", bg = "#feb788" }   # error
+marker_marked   = { fg = "#ffb3b2", bg = "#ffb3b2" }   # tertiary
+marker_selected = { fg = "#ffb3b2", bg = "#ffb3b2" }   # tertiary
+
+tab_active   = { fg = "#680014", bg = "#ffb3b2" }      # surface + primary_container
+tab_inactive = { fg = "#f8dcdb", bg = "#1e1010" }      # on_surface_variant + surface_container
+# tab_width    = 1
+
+count_copied   = { fg = "#4c261a", bg = "#f5b8a6" }    # surface + primary
+count_cut      = { fg = "#4f2502", bg = "#feb788" }    # surface + error
+count_selected = { fg = "#680014", bg = "#ffb3b2" }    # surface + tertiary
+
+border_symbol = "│"
+border_style  = { fg = "#920020" }                     # outline_variant
+
+syntect_theme = "~/.config/yazi/Catppuccin-mocha.tmTheme"
+
+[mode]
+normal_main = { fg = "#680014", bg = "#ffb3b2", bold = true }
+normal_alt  = { fg = "#ffdad9", bg = "#920020" }               # tertiary_fixed + tertiary
+
+select_main = { fg = "#4c261a", bg = "#f5b8a6", bold = true } # surface + primary
+select_alt  = { fg = "#ffdbd0", bg = "#663c2e" }               # primary + surface_variant
+
+unset_main  = { fg = "#690005", bg = "#ffb4ab", bold = true } # surface + error
+unset_alt   = { fg = "#ffdad6", bg = "#93000a" }               # error + surface_variant
+
+[status]
+progress_label  = { fg = "#ffdad9", bold = true }
+progress_normal = { fg = "#920020", bg = "#680014" }
+progress_error  = { fg = "#ffb4ab", bg = "#690005" }
+
+perm_type  = { fg = "#feb788" }
+perm_read  = { fg = "#ffb3b2" }
+perm_write = { fg = "#f5b8a6" }
+perm_exec  = { fg = "#ffb4ab" }
+perm_sep   = { fg = "#a38b8a" }
+
+[input]
+border   = { fg = "#920020" }                          # tertiary
+title    = {}
+value    = {}
+selected = { reversed = true }
+
+[pick]
+border   = { fg = "#920020" }
+active   = { fg = "#ffb3b2", bold = true}
+inactive = {}
+
+[confirm]
+border     = { fg = "#920020" }
+title      = { fg = "#ffb3b2" }
+content    = {}
+list       = {}
+btn_yes    = { reversed = true }
+btn_no     = {}
+
+[cmp]
+border = { fg = "#920020" }
+
+[tasks]
+border  = { fg = "#920020" }
+title   = {}
+hovered = { underline = true }
+
+[which]
+mask            = { bg = "#663c2e" }                  # surface_variant
+cand            = { fg = "#ffb3b2" }                  # tertiary
+rest            = { fg = "#473534" }                  # on_surface_variant
+desc            = { fg = "#ffdbd0" }                  # tertiary
+separator       = " 󰄾 "
+separator_style = { fg = "#a38b8a" }                  # outline_variant
+
+[help]
+on      = { fg = "#ffb3b2" }
+run     = { fg = "#ffb3b2" }
+desc    = { fg = "#f5b8a6" }
+hovered = { bg = "#663c2e", bold = true }             # outline_variant
+footer  = { fg = "#ffb3b2", bg = "#1e1010" }          # primary + surface_dim
+
+[notify]
+title_info  = { fg = "#ffb3b2" }                      # primary
+title_warn  = { fg = "#f5b8a6" }                      # secondary
+title_error = { fg = "#93000a" }                      # error
+
+[filetype]
+rules = [
+	{ mime = "image/*", fg = "#feb788" },               # tertiary
+	{ mime = "{audio,video}/*", fg = "#f5b8a6" },       # secondary
+	{ mime = "application/*zip", fg = "#ffdcc6" },      # tertiary_fixed
+	{ mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", fg = "#ffdcc6" },
+	{ mime = "application/{pdf,doc,rtf}", fg = "#ffb3b2" },  # primary
+	# { name = "*", fg = "#f8dcdb" },                     # on_surface
+	# { name = "*/", fg = "#feb788" }                     # tertiary
+]
+
+[spot]
+border   = { fg = "#920020" }
+title    = { fg = "#ffb3b2" }
+tbl_cell = { fg = "#ffb3b2", reversed = true }
+tbl_col  = { bold = true }
+
+
